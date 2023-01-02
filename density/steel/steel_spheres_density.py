@@ -39,7 +39,7 @@ plt.plot(x, line(x, m_hat, q_hat))
 plt.xlabel("Massa [g]")
 plt.ylabel("Volume [mm$^3$]")
 plt.grid(which = "both", ls="dashed", color="gray")
-plt.savefig("Massa_Volume.pdf")
+plt.savefig("./density/steel/Mass_Volume.pdf")
  
     #fit legge di potenza
  
@@ -57,7 +57,7 @@ plt.yscale("log")
 plt.xlabel("Massa [g]")
 plt.ylabel("Raggio [mm]")
 plt.grid(which="both", ls="dashed", color="gray")
-plt.savefig("Massa_Raggio.pdf")
+plt.savefig("./density/steel/Mass_Radium.pdf")
  
 #residui
  
@@ -68,6 +68,7 @@ plt.grid(which="both", ls="dashed", color="gray")
 plt.xlabel("Massa [g]")
 plt.ylabel("Residui")
 plt.axhline(0, color="black")
+plt.savefig("./density/steel/steel_Residuals.pdf")
  
 plt.show()
 
