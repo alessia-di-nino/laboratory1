@@ -52,7 +52,7 @@ m_hat, q_hat = popt
 sigma_m, sigma_q = np.sqrt(pcov.diagonal())
 print(f" m_hat: {m_hat}, sigma_m: {sigma_m}, q_hat: {q_hat}, sigma_q: {sigma_q}")
  
-x = np.linspace(np.min(masse), np.max(masse), 3)
+x = np.linspace(0, np.max(masse), 3)
 plt.plot(x, line(x, m_hat, q_hat))
 plt.xlabel("Massa [g]")
 plt.ylabel("Volume [mm$^3$]")
