@@ -33,17 +33,26 @@ def expo(n, h0, gamma):
     return h0 * gamma**n
 
 plt.figure('Altezza dei rimbalzi')
-plt.errorbar(n, h, dh, fmt='o')
+plt.errorbar(n, h, dh, fmt='.')
 popt, pcov = curve_fit(expo, n, h, sigma=dh)
 h0_hat, gamma_hat = popt
 sigma_h0, sigma_gamma = np.sqrt(pcov.diagonal())
 print(h0_hat, sigma_h0, gamma_hat, sigma_gamma)
-x = np.linspace(0.0, 6.0, 100)
+
+x = np.linspace(np.min(n), np.max(n), 100)
 plt.plot(x, expo(x, h0_hat, gamma_hat))
 plt.yscale('log')
 plt.grid(which='both', ls='dashed', color='gray')
 plt.xlabel('Rimbalzo')
 plt.ylabel('Altezza massima [m]')
 plt.savefig('./ball/altezza_rimbalzi.pdf')
+
+'''plt.figure("Residui")
+res = n - expo(t, h0_hat, gamma_hat)
+plt.errorbar(t, res, sigma_t, fmt=".")
+plt.axhline(0, color="black")
+plt.grid(which="both", ls="dashed", color="gray")
+plt.xlabel("Tempi [s]")
+plt.ylabel("Residui")'''
 
 plt.show()
