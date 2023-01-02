@@ -23,7 +23,8 @@ def line(x, m, q):
     return m * x + q
  
 def power_law(x, norm, index):
-    return norm * (x**index)
+    return norm * (x**index) #norm = k, costante di normalizzazione, index=
+    #esponente della variabile indipendente (raggio)
  
     #fit retta
  
@@ -43,21 +44,22 @@ plt.savefig("./density/steel/Mass_Volume.pdf")
  
     #fit legge di potenza
  
-plt.figure("Grafico Massa_Raggio")
-plt.errorbar(m, r, sigma_r, sigma_m, fmt=".")
-popt, pcov = curve_fit(power_law, m, r)
+plt.figure("Grafico Raggio_Massa")
+plt.errorbar(r, m, sigma_m, sigma_r, fmt=".")
+popt, pcov = curve_fit(power_law, r, m)
 norm_hat, index_hat = popt
 sigma_norm, sigma_index = np.sqrt(pcov.diagonal())
 print(norm_hat, sigma_norm, index_hat, sigma_index)
  
-x = np.linspace(np.min(m), np.max(m), 5)
+x = np.linspace(np.min(r), np.max(r), 5) #inserire np.min(r) al posto di 3 per vedere il grafico normale
 plt.plot(x, power_law(x, norm_hat, index_hat))
 plt.xscale("log")
 plt.yscale("log")
-plt.xlabel("Massa [g]")
-plt.ylabel("Raggio [mm]")
+plt.xlabel("Raggio [mm]")
+plt.ylabel("Massa [g]")
 plt.grid(which="both", ls="dashed", color="gray")
-plt.savefig("./density/steel/Mass_Radium.pdf")
+plt.axhline(0, color="black")
+plt.savefig("./density/steel/Radium_Mass.pdf")
  
 #residui
  
