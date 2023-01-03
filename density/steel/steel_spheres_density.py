@@ -51,7 +51,7 @@ norm_hat, index_hat = popt
 sigma_norm, sigma_index = np.sqrt(pcov.diagonal())
 print(norm_hat, sigma_norm, index_hat, sigma_index)
  
-x = np.linspace(np.min(r), np.max(r), 5) #inserire np.min(r) al posto di 3 per vedere il grafico normale
+x = np.linspace(np.min(r), np.max(r), 5) #inserire 3 al posto di np.min(r) per vedere l'intercetta con r=1
 plt.plot(x, power_law(x, norm_hat, index_hat))
 plt.xscale("log")
 plt.yscale("log")
