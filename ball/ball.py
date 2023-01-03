@@ -17,7 +17,7 @@ plt.savefig('./ball/audio_rimbalzi.pdf')
 plt.show()
 
 t = np.array ([0.660, 1.535, 2.201, 2.717, 3.139, 3.457, 3.734, 3.948, 4.122])
-sigma_t = 0.005
+sigma_t = 0.01
 
 # Calcolo delle differenze di tempo.
 dt = np.diff(t)
@@ -47,12 +47,13 @@ plt.xlabel('Rimbalzo')
 plt.ylabel('Altezza massima [m]')
 plt.savefig('./ball/altezza_rimbalzi.pdf')
 
-'''plt.figure("Residui")
-res = n - expo(t, h0_hat, gamma_hat)
-plt.errorbar(t, res, sigma_t, fmt=".")
+plt.figure("Residui")
+res = h - expo(n, h0_hat, gamma_hat)
+plt.errorbar(n, res, sigma_h0, fmt=".")
 plt.axhline(0, color="black")
 plt.grid(which="both", ls="dashed", color="gray")
-plt.xlabel("Tempi [s]")
-plt.ylabel("Residui")'''
+plt.xlabel("Rimbalzi")
+plt.ylabel("Residui")
+plt.savefig('./ball/residui.pdf')
 
 plt.show()
