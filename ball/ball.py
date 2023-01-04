@@ -13,6 +13,8 @@ t = np.arange(len(signal)) / stream.getframerate()
 plt.figure('Rimbalzi pallina')
 plt.plot(t, signal)
 plt.xlabel('Tempo [s]')
+plt.ylabel("Registrazione audio")
+plt.grid(which='both', ls='dashed', color='gray')
 plt.savefig('./ball/audio_rimbalzi.pdf')
 plt.show()
 
