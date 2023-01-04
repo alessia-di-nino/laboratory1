@@ -18,7 +18,7 @@ plt.grid(which='both', ls='dashed', color='gray')
 plt.savefig('./ball/audio_rimbalzi.pdf')
 plt.show()
 
-t = np.array ([0.660, 1.535, 2.201, 2.717, 3.139, 3.457, 3.734, 3.948, 4.122])
+t = np.array ([0.66, 1.54, 2.20, 2.72, 3.14, 3.46, 3.73, 3.95, 4.12])
 sigma_t = 0.01
 
 # Calcolo delle differenze di tempo.
