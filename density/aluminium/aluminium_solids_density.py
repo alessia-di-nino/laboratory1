@@ -31,14 +31,14 @@ class Cilindro:
  
 solidi = []
  
-solidi.append( Parallelepipedo( base = 10.06, altezza = 17.65, profondità = 10.00, massa = 4.773 ) )
-solidi.append( Cilindro(diametro = 11.96, altezza = 19.14, massa = 5.790) )
-solidi.append( Cilindro(diametro=5.95, altezza=19.42, massa=1.457))
+solidi.append( Parallelepipedo( base = 10.06/1000, altezza = 17.65/1000, profondità = 10.00/1000, massa = 4.773/1000 ) )
+solidi.append( Cilindro(diametro = 11.96/1000, altezza = 19.14/1000, massa = 5.790/1000) )
+solidi.append( Cilindro(diametro=5.95/1000, altezza=19.42/1000, massa=1.457/1000))
  
 masse = [s.massa for s in solidi]
 volumi = [s.volume for s in solidi]
-errori_vol = [s.get_err_vol(0.01) for s in solidi]
-errori_masse = [0.001 for i in range(len(volumi))]
+errori_vol = [s.get_err_vol(0.01/1000) for s in solidi]
+errori_masse = [0.001/1000 for i in range(len(volumi))]
  
 #fit
  

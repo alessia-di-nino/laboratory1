@@ -40,15 +40,15 @@ class Prisma:
  
 solidi = []
  
-solidi.append( Parallelepipedo( base = 9.90, altezza = 41.48, massa = 32.738))
-solidi.append( Cilindro(diametro = 10.12, altezza = 37.58, massa = 24.613))
-solidi.append( Cilindro(diametro = 10.08, altezza = 16.08, massa = 10.505))
-solidi.append( Prisma( base = 9.74, altezza = 22.20, massa = 16.422))
+solidi.append( Parallelepipedo( base = 9.90/1000, altezza = 41.48/1000, massa = 32.738/1000))
+solidi.append( Cilindro(diametro = 10.12/1000, altezza = 37.58/1000, massa = 24.613/1000))
+solidi.append( Cilindro(diametro = 10.08/1000, altezza = 16.08/1000, massa = 10.505/1000))
+solidi.append( Prisma( base = 9.74/1000, altezza = 22.20/1000, massa = 16.422/1000))
  
 masse = [s.massa for s in solidi]
 volumi = [s.volume for s in solidi]
-errori_vol = [s.get_err_vol(0.02) for s in solidi]
-errori_masse = [0.001 for i in range(len(volumi))]
+errori_vol = [s.get_err_vol(0.02/1000) for s in solidi]
+errori_masse = [0.001/1000 for i in range(len(volumi))]
  
 #fit
  
