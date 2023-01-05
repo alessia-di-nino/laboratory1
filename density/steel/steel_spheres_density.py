@@ -7,9 +7,13 @@ from scipy.optimize import curve_fit
  
 m = np.array([8.360, 11.893, 18.904, 24.861, 44.885])
 sigma_m = np.full(m.shape, 0.001)
+m = m/1000
+sigma_m = sigma_m/1000
  
 d = np.array([12.80, 14.35, 16.70, 18.30, 22.25])
 sigma_d = np.full(d.shape, 0.05)
+d = d/1000
+sigma_d = sigma_d/1000
  
 r = d / 2.0
 sigma_r = sigma_d / 2.0
@@ -37,8 +41,8 @@ print(m_hat, sigma_m, q_hat, sigma_q)
  
 x = np.linspace(0, np.max(m), 5)
 plt.plot(x, line(x, m_hat, q_hat))
-plt.xlabel("Massa [g]")
-plt.ylabel("Volume [mm$^3$]")
+plt.xlabel("Massa [Kg]")
+plt.ylabel("Volume [m$^3$]")
 plt.grid(which = "both", ls="dashed", color="gray")
 plt.savefig("./density/steel/Mass_Volume.pdf")
  
@@ -55,8 +59,8 @@ x = np.linspace(np.min(r), np.max(r), 5) #inserire 3 al posto di np.min(r) per v
 plt.plot(x, power_law(x, norm_hat, index_hat))
 plt.xscale("log")
 plt.yscale("log")
-plt.xlabel("Raggio [mm]")
-plt.ylabel("Massa [g]")
+plt.xlabel("Raggio [m]")
+plt.ylabel("Massa [Kg]")
 plt.grid(which="both", ls="dashed", color="gray")
 plt.axhline(0, color="black")
 plt.savefig("./density/steel/Radium_Mass.pdf")
