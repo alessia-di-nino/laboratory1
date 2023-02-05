@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy.optimize import curve_fit
 
-file_path = './ball/Palla-audio.wav'
+file_path = './ball/rimbalzi.wav'
 stream = wave.open(file_path)
 signal = np.frombuffer(stream.readframes(stream.getnframes()), dtype=np.int16)
 if stream.getnchannels() == 2:
@@ -18,8 +18,8 @@ plt.grid(which='both', ls='dashed', color='gray')
 plt.savefig('./ball/audio_rimbalzi.pdf')
 plt.show()
 
-t = np.array ([0.66, 1.54, 2.20, 2.72, 3.14, 3.46, 3.73, 3.95, 4.12])
-sigma_t = 0.01
+t = np.array ([0.587, 1.549, 2.403, 3.164, 3.845, 4.452, 5.002, 5.497, 5.930, 6.334, 6.687, 7.009])
+sigma_t = 0.005
 
 # Calcolo delle differenze di tempo.
 dt = np.diff(t)

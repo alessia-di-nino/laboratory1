@@ -7,7 +7,7 @@ d = np.array([0.42, 0.32, 0.22, 0.12, 0.02, 0.08, 0.18, 0.28, 0.38, 0.48])
 sigma_d = np.full(d.shape, 0.005)
 
 #matrice (10 x 6)
-misure = np.loadtxt("./dati.txt")
+misure = np.loadtxt("./physical_pendulum/dati.txt")
 print(misure)
 
 T = []
