@@ -30,6 +30,8 @@ def period_model(d, l):
     return 2.0 * np.pi * np.sqrt((l**2 / 12.0 + d**2.0) / (g * d))
 
 plt.figure("Periodo")
+fig = plt.figure("Periodo")
+fig.add_axes((0.1, 0.3, 0.8, 0.6))
 plt.errorbar(d, T, sigma_T, sigma_d, fmt=".")
 popt, pcov = curve_fit(period_model, d, T, sigma=sigma_T)
 l_hat = popt[0]
@@ -41,9 +43,9 @@ plt.plot(x, period_model(x, l_hat))
 plt.xlabel("d [m]")
 plt.ylabel("Periodo [s]")
 plt.grid(which="both", ls="dashed", color="gray")
-plt.savefig("Fit_pendolo")
 
-plt.figure("Residui")
+fig.add_axes((0.1, 0.1, 0.8, 0.2))
+
 res = T - period_model(d, l_hat)
 plt.errorbar(d, res, sigma_T, fmt=".")
 plt.axhline(0, color="black")
