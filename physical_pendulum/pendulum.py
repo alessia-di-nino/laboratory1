@@ -53,6 +53,6 @@ plt.grid(which="both", ls="dashed", color="gray")
 plt.xlabel("Distanza [cm]")
 plt.ylabel("Residui")
 
-plt.savefig("fit and residuals.pdf")
+plt.savefig("./physical_pendulum/fit and residuals.pdf")
 
 plt.show()

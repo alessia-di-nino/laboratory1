@@ -26,6 +26,6 @@ plt.plot(x, parabola(x, *popt))
 plt.xlabel("Tempo [s]")
 plt.ylabel("Altezza [m]")
 plt.grid(ls="dashed", which="both", color="gray")
-plt.savefig("legge_oraria.pdf")
+plt.savefig("./fall/legge_oraria.pdf")
 
 plt.show()
