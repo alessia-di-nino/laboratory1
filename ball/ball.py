@@ -34,6 +34,7 @@ dh = 2.0 * np.sqrt(2.0) * h * sigma_t / dt
 def expo(n, h0, gamma):
     return h0 * gamma**n
 
+'''
 plt.figure('Altezza dei rimbalzi')
 plt.errorbar(n, h, dh, fmt='.')
 popt, pcov = curve_fit(expo, n, h, sigma=dh)
@@ -57,5 +58,43 @@ plt.grid(which="both", ls="dashed", color="gray")
 plt.xlabel("Rimbalzi")
 plt.ylabel("Residui")
 plt.savefig('./ball/residui.pdf')
+
+plt.show()
+'''
+
+fig1 = plt.figure(1)
+frame1=fig1.add_axes((.1,.35,.8,.6))
+plt.ylabel('Altezza massima [m]',fontsize=10)
+plt.errorbar(n, h, dh, fmt='.')
+popt, pcov = curve_fit(expo, n, h, sigma=dh)
+h0_hat, gamma_hat = popt
+sigma_h0, sigma_gamma = np.sqrt(pcov.diagonal())
+print(h0_hat, sigma_h0, gamma_hat, sigma_gamma)
+
+x = np.linspace(np.min(n), np.max(n), 100)
+plt.plot(x, expo(x, h0_hat, gamma_hat))
+plt.yscale('log')
+plt.grid(which='both', ls='dashed', color='gray')
+
+#Parte inferiore contenente i residui
+frame2=fig1.add_axes((.1,.1,.8,.2))
+frame2.set_ylabel('Residui')
+plt.xlabel('Rimbalzi',fontsize=10)
+res = h - expo(n, h0_hat, gamma_hat)
+plt.errorbar(n, res, sigma_h0, fmt=".")
+plt.axhline(0, color="black")
+plt.grid(which="both", ls="dashed", color="gray")
+
+plt.savefig('./ball/altezza_rimbalzi.pdf')
+
+'''
+pars, covm = expo(n, h0, gamma)
+
+chisq = sum(((h - expo(n, *pars))/sigma_t)**2.)
+ndof = len(y) - len(pars)
+print(f'chi quadro = {chisq:.3f} ({ndof:d} dof)')
+'''
+chisq = np.sum(((h - expo(n, h0_hat, gamma_hat))/dh)**2)
+print(f'Chi quadro = {chisq :.1f}')
 
 plt.show()

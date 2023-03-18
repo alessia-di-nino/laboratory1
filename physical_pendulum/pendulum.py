@@ -24,6 +24,8 @@ for riga in misure:
     T.append( np.mean(riga) / 10  )
     sigma_T.append( calculate_sigma(riga) )
 
+print(T, sigma_T)
+
 g = 9.81
 
 def period_model(d, l):
