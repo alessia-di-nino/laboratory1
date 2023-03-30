@@ -1,0 +1,5 @@
+&inputdata !deve iniziare sempre con &
+! numero di i e x
+i = 3
+x = 37.0d0
+/
