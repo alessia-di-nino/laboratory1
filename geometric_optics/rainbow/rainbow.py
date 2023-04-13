@@ -62,7 +62,7 @@ theta = np.linspace(0.0, 2.0*np.pi, 353)
 a = x_c + r * np.cos(theta)
 b = y_c + r * np.sin(theta)
 plt.plot(a, b)
-plt.savefig("./geometric_optics/moon_halo/fit-in.pdf")
+plt.savefig("./geometric_optics/rainbow/fit-in.pdf")
 
 file_path1 = "./geometric_optics/rainbow/points_ext.txt"
 x1, y1 = np.loadtxt(file_path1, delimiter=None, skiprows=0, usecols=(0,1), unpack=True)
@@ -105,17 +105,16 @@ def fit_circle(x1, y1, sigma1):
 
 np.random.seed (1)
 sigma1 = 0.05
-x1, y1 = np.loadtxt(file_path1, delimiter=None, skiprows=0, usecols=(0,1), unpack=True)
 x_c1, y_c1, r1, sigma_xy1, sigma_r1 = fit_circle(x1, y1, sigma1)
-print (f'x_c1 = {x_c:.3f} +/- {sigma_xy1:.3f}')
-print (f'y_c1 = {y_c:.3f} +/- {sigma_xy1:.3f}')
-print (f'r1 = {r: .3f} +/- {sigma_r1:.3f}')
+print (f'x_c1 = {x_c1:.3f} +/- {sigma_xy1:.3f}')
+print (f'y_c1 = {y_c1:.3f} +/- {sigma_xy1:.3f}')
+print (f'r1 = {r1: .3f} +/- {sigma_r1:.3f}')
 x1 = np.linspace(400, 900, 353)
 y1 = np.linspace(200, 600, 353)
 theta1 = np.linspace(0.0, 2.0*np.pi, 353)
 a1 = x_c1 + r1 * np.cos(theta1)
 b1 = y_c1 + r1 * np.sin(theta1)
 plt.plot(a1, b1)
-plt.savefig("./geometric_optics/moon_halo/fit-ext.pdf")
+plt.savefig("./geometric_optics/rainbow/fit-ext.pdf")
 
 plt.show()
