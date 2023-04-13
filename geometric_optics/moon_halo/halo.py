@@ -62,5 +62,6 @@ theta = np.linspace(0.0, 2.0*np.pi, 353)
 a = x_c + r * np.cos(theta)
 b = y_c + r * np.sin(theta)
 plt.plot(a, b)
+plt.savefig("./geometric_optics/moon_halo/fit.pdf")
 
 plt.show()
