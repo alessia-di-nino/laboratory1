@@ -117,4 +117,21 @@ b1 = y_c1 + r1 * np.sin(theta1)
 plt.plot(a1, b1)
 plt.savefig("./geometric_optics/rainbow/fit-ext.pdf")
 
+file_path2 = "./geometric_optics/rainbow/red-points.txt"
+x2, y2 = np.loadtxt(file_path2, delimiter=None, skiprows=0, usecols=(0,1), unpack=True)
+
+file_path3 = "./geometric_optics/rainbow/yellow-points.txt"
+x3, y3 = np.loadtxt(file_path3, delimiter=None, skiprows=0, usecols=(0,1), unpack=True)
+fig = plt.figure('bande colorate')
+
+colors = []
+for i in range(len(x3)):
+    colors.append("yellow")
+
+for i in range(len(x2)):
+    colors.append("red")
+
+plt.scatter( np.concatenate([x3, x2]), np.concatenate( [y3 , y2]), c=colors, marker=".")
+plt.grid(which="both", ls="dashed", color="gray")
+
 plt.show()
