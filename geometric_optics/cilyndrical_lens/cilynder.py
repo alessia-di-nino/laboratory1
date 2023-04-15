@@ -52,4 +52,6 @@ plt.grid(which="both", color="gray", ls="dashed")
 plt.xlabel('1/p [m^-1]')
 plt.ylabel("Residui")
 plt.ylim(-2, 2)
+plt.savefig("./geometric_optics/cilyndrical_lens/fit")
+
 plt.show()
