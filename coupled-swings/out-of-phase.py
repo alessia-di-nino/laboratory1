@@ -1,59 +1,109 @@
 import numpy as np
-import matplotlib
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
-#grafico
-def oscillazionecf(t, A1, tao1, w1, phi1, C1):
-    """Modello di oscillazione.
-    """
-    return A1*np.exp(-t/tao1)*np.cos(w1*t + phi1) + C1
+#dati pendolo in controfase A e pendolo in controfase B
+xA, yA, xB, yB=np.loadtxt("./coupled-swings/out-of-phase.txt", unpack=True)
 
-#dati 1
-file_path = "./coupled-swings/out-of-phase.txt"
-t, y = np.loadtxt(file_path, delimiter=None, usecols=(2,3), unpack=True)
-sigma_y = 1   # [u.a.]
+#scartiamo i primi dati, dato che i pendoli sono stati tenuti fermi dopo aver avviato il programma di acquisizione, e anche
+#gi ultimi dati, dato che uno dei due pendoli si era fermato èrima dell'altro per qualche arcano motivo.
+xA=xA[14:2008]
+yA=yA[14:2008]
+xB=xB[14:2008]
+yB=yB[14:2008]
+dxA= np.full(xA.shape, 0.001)#secondi
+dyA=np.full(yA.shape, 1)#ua
+dxB=np.full(xB.shape, 0.001)#secondi
+dyB=np.full(yB.shape, 1) #ua
 
-# Grafico 1.
-fig = plt.figure('Fit e residui pendoli controfase')
-fig.add_axes((0.1, 0.3, 0.8, 0.6))
-plt.errorbar(t, y, sigma_y, fmt='b.')
-popt, pcov = curve_fit(oscillazionecf, t, y, p0=(300, 0.5, 4.427, 0.0883, 12))
-A1_hat, tao1_hat, w1_hat, phi1_hat, C1_hat = popt
-sigma_A1, sigma_tao1, sigma_w1, sigma_phi1, sigma_C1 = np.sqrt(pcov.diagonal())
-print("\nParametro A1: A1 = ", A1_hat, "\nIncertezza su A1: sigma_A1 = ", sigma_A1, "\n\nParametro tao1:  tao1 = ", tao1_hat, "\nIncertezza su tao1: sigma_tao1 = ", sigma_tao1,"\n\nParametro w1:  w1 = ", w1_hat, "\nIncertezza su w1: sigma_w1 = ", sigma_w1, "\n\nParametro phi1:  phi1 = ", phi1_hat, "\nIncertezza su phi1: sigma_phi1 = ", sigma_phi1, "\n\nParametro C1:  C1 = ", C1_hat, "\nIncertezza su C1: sigma_C1 = ", sigma_C1)
-plt.plot(t, oscillazionecf(t, A1_hat, tao1_hat, w1_hat, phi1_hat, C1_hat), "royalblue")
-plt.grid(which='both', ls='dashed', color='gray')
-plt.ylabel('x [c,]')
+#modello di fit
+def phases(t, a0, T, w, fi, k):
+    return a0*np.exp(-t/T)*np.cos(w*t + fi) + k
 
-#dati 2
-t, y2 = np.loadtxt(file_path, delimiter=None, usecols=(0,1), unpack=True)
+#fit pendolo A
+pA=[92, 30, 4.485, 0., 410]
+poptA, pcovA= curve_fit(phases, xA, yA, p0=pA, sigma=dyA)
+a0_hatA, T_hatA, w_hatA, fi_hatA, k_hatA = poptA
+da0A, dTA, dwA, dfiA, dkA = np.sqrt(pcovA.diagonal())
 
-# Grafico 2.
-plt.errorbar(t, y2, sigma_y, fmt='r.')
-popt, pcov = curve_fit(oscillazionecf, t, y2, p0=(300, 0.5, 4.427, 0.0883, 2))
-A2_hat, tao2_hat, w2_hat, phi2_hat, C2_hat = popt
-sigma_A2, sigma_tao2, sigma_w2, sigma_phi2, sigma_C2 = np.sqrt(pcov.diagonal())
-print("\nParametro A2: A2 = ", A2_hat, "\nIncertezza su A2: sigma_A2 = ", sigma_A2, "\n\nParametro tao2:  tao2 = ", tao2_hat, "\nIncertezza su tao2: sigma_tao2 = ", sigma_tao2,"\n\nParametro w2:  w2 = ", w2_hat, "\nIncertezza su w2: sigma_w2 = ", sigma_w2, "\n\nParametro phi2:  phi2 = ", phi2_hat, "\nIncertezza su phi2: sigma_phi2 = ", sigma_phi2, "\n\nParametro C2:  C2 = ", C2_hat, "\nIncertezza su C2: sigma_C2 = ", sigma_C2)
-plt.plot(t, oscillazionecf(t, A2_hat, tao2_hat, w2_hat, phi2_hat, C2_hat), "darkorange")
-plt.grid(which='both', ls='dashed', color='gray')
-plt.ylabel('x [cm]')
+#Parametri di best-fit
+print('ampiezza delle oscillazioni A',  a0_hatA, '\pm', da0A)
+print('Tempo di decadimentoA ', T_hatA, '\pm', dTA)
+print('Pulsazione della controfase A', w_hatA, '\pm', dwA)
+print('Sfasamento A', fi_hatA, '\pm', dfiA)
+print('Costante di traslazione A', k_hatA, '\pm', dkA)
 
-# Grafico dei residui 1.
-fig.add_axes((0.1, 0.1, 0.8, 0.2))
-res1 = y - oscillazionecf(t, A1_hat, tao1_hat, w1_hat, phi1_hat, C1_hat)
-plt.errorbar(t, res1, sigma_y, fmt='b.')
-plt.grid(which='both', ls='dashed', color='gray')
-plt.xlabel('t [s]')
-plt.ylabel('Residuals')
-plt.ylim(-20.0, 20.0)
 
-# Grafico dei residui 2.
-res2 = y2 - oscillazionecf(t, A2_hat, tao2_hat, w2_hat, phi2_hat, C2_hat)
-plt.errorbar(t, res2, sigma_y, fmt='r.')
-plt.grid(which='both', ls='dashed', color='gray')
-plt.xlabel('t [s]')
-plt.ylabel('Residuals')
-plt.ylim(-20.0, 20.0)
+#residui  normalizzati A
+resA = (yA - phases(xA, *poptA))/dyA
+
+
+#creazione plot e grafico dei residui A
+figA = plt.figure('Oscillazioni_in_controfase_pendolo_A')
+ax1, ax2 = figA.subplots(2, 1, sharex=True, gridspec_kw=dict(height_ratios=[2, 1], hspace=0.05))
+ax1.errorbar(xA[::3], yA[::3], dyA[::3], dxA[::3], fmt='.', label='Dati', color='red')
+
+
+ax1.plot(xA, phases(xA, *poptA), label='Modello di best-fit', color='limegreen')
+ax1.set_ylabel('ampiezza [a. u.]')
+ax1.grid(color='lightgray', ls='dashed')
+ax1.legend()
+ax2.errorbar(xA[::3], resA[::3], dyA[::3], fmt='.', color='red')
+ax2.plot(xA, np.full(xA.shape, 0.0), color='limegreen')
+ax2.set_xlabel('tempo [secondi]')
+ax2.set_ylabel('Residui normalizzati [a. u.]')
+ax2.grid(color='lightgray', ls='dashed')
+plt.xlim(0.0, 105)
+figA.align_ylabels((ax1, ax2))
+
+#Chisquared A
+XA=np.sqrt(2*1989) 
+chisqA= np.sum((((yA - phases(xA, *poptA))/dyA)**2))
+print(f'Chi quadroA = {chisqA :.1f}')
+print('Chisq atteso', 1989, '+/-', XA)
+
+
+
+#fit pendolo B
+pB=[104, 49, 4., 0., 522]
+poptB, pcovB= curve_fit(phases, xB, yB, p0=pB, sigma=dyB)
+a0_hatB, T_hatB, w_hatB, fi_hatB, k_hatB = poptB
+da0B, dTB, dwB, dfiB, dkB = np.sqrt(pcovB.diagonal())
+
+#Parametri di best-fit
+print('ampiezza delle oscillazioni B',  a0_hatB, '\pm', da0B)
+print('Tempo di decadimentoB', T_hatB, '\pm', dTB)
+print('Pulsazione della controfase B', w_hatB, '\pm', dwB )
+print('SfasamentoB', fi_hatB, '\pm', dfiB)
+print('Costante di traslazioneB', k_hatB, '\pm', dkB)
+
+
+#residui normalizzati B
+resB = (yB - phases(xB, *poptB))/dyB
+
+
+#creazione plot e grafico dei residui B
+figB = plt.figure('Oscillazioni_in_controfase_pendolo_B')
+ax1, ax2 = figB.subplots(2, 1, sharex=True, gridspec_kw=dict(height_ratios=[2, 1], hspace=0.05))
+ax1.errorbar(xB[::3], yB[::3], dyB[::3], dxB[::3], fmt='.', label='Dati', color='darkorange')
+
+
+ax1.plot(xB, phases(xB, *poptB), label='Modello di best-fit', color='limegreen')
+ax1.set_ylabel('ampiezza [a. u.]')
+ax1.grid(color='lightgray', ls='dashed')
+ax1.legend()
+ax2.errorbar(xB[::3], resB[::3], dyB[::3], fmt='.', color='darkorange')
+ax2.plot(xB, np.full(xB.shape, 0.0), color='limegreen')
+ax2.set_xlabel('tempo [secondi]')
+ax2.set_ylabel('Residui normalizzati [a. u.]')
+ax2.grid(color='lightgray', ls='dashed')
+plt.xlim(0.0, 105)
+figB.align_ylabels((ax1, ax2))
+
+#Chisquared B
+XB=np.sqrt(2*1989) 
+chisqB= np.sum((((yB - phases(xB, *poptB))/dyB)**2))
+print(f'Chi quadroB = {chisqB :.1f}')
+print('Chisq atteso', 1989, '+/-', XB)
 
 plt.show()

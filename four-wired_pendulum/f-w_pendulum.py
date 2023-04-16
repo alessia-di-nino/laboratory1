@@ -23,7 +23,7 @@ def f_v(x, v0, tau):
     return v0*np.exp(-x/tau)
 
 def f_Theta(x, p1):
-    return 2*np.pi*np.sqrt(l/g)*(1+ p1*(x**2))
+    return 2*np.pi*np.sqrt(l/g)*(1+ p1*(x**2)) + 0.01
 
 popt_v, pcov_v = curve_fit(f_v, t, v, np.array([500., 100.]))
 v0_fit, tau_fit = popt_v

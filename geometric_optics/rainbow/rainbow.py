@@ -122,6 +122,7 @@ x2, y2 = np.loadtxt(file_path2, delimiter=None, skiprows=0, usecols=(0,1), unpac
 
 file_path3 = "./geometric_optics/rainbow/yellow-points.txt"
 x3, y3 = np.loadtxt(file_path3, delimiter=None, skiprows=0, usecols=(0,1), unpack=True)
+
 fig = plt.figure('bande colorate')
 
 colors = []
@@ -133,5 +134,107 @@ for i in range(len(x2)):
 
 plt.scatter( np.concatenate([x3, x2]), np.concatenate( [y3 , y2]), c=colors, marker=".")
 plt.grid(which="both", ls="dashed", color="gray")
+plt.savefig("./geometric_optics/rainbow/colors.pdf")
 
+fig = plt.figure('fit banda rossa')
+
+plt.errorbar(x2, y2, fmt='.', color="red")
+plt.xlabel(r"$x$")
+plt.ylabel(r"$y$")
+plt.xlim([100, 1150])
+plt.ylim([50, 1150])
+plt.grid()
+plt.gca().set_aspect("equal") #serve a forzare la griglia quadrata (rispetta le proporzioni tra assi)
+
+def fit_circle(x2, y2, sigma2):
+    n2 = len(x2)
+    x_m2 = np.mean(x2)
+    y_m2 = np.mean(y2)
+    u2 = x2 - x_m2
+    v2 = y2-y_m2
+
+    s_u2 = np.sum(u2)
+    s_uu2 = np.sum (u2**2.0)
+    s_uuu2 = np.sum(u2**3.0)
+    s_v2= np.sum(v2)
+    s_vv2 = np.sum(v2**2.0)
+    s_vvv2 = np.sum(v2**3.0)
+    s_uv2 = np.sum(u2 * v2)
+    s_uuv2 = np.sum(u2 * u2 * v2)
+    s_uvv2 = np. sum (u2* v2 * v2)
+    D2 = 2.0*(s_uu2 * s_vv2 - s_uv2**2.0)
+
+    u_c2 = (s_vv2 * (s_uuu2 + s_uvv2) - s_uv2*(s_vvv2 + s_uuv2))/ D2
+    v_c2 = (s_uu2 * (s_vvv2 + s_uuv2) - s_uv2*(s_uuu2 + s_uvv2)) / D2
+    x_c2 = u_c2 + x_m2
+    y_c2 = v_c2 + y_m2
+    r2 = np.sqrt(u_c2**2.0 + v_c2**2.0 + (s_uu2 + s_vv2) / n2)
+    sigma_xy2 = sigma2 * np.sqrt(2.0 / n2)
+    sigma_r2 = sigma2 * np.sqrt(1.0/n2)
+    return x_c2, y_c2, r2, sigma_xy2, sigma_r2
+
+np.random.seed (1)
+sigma2 = 0.05
+x_c2, y_c2, r2, sigma_xy2, sigma_r2 = fit_circle(x2, y2, sigma2)
+print (f'x_c2 = {x_c2:.3f} +/- {sigma_xy2:.3f}')
+print (f'y_c2 = {y_c2:.3f} +/- {sigma_xy2:.3f}')
+print (f'r2 = {r2: .3f} +/- {sigma_r2:.3f}')
+x2 = np.linspace(400, 900, 353)
+y2 = np.linspace(200, 600, 353)
+theta2 = np.linspace(0.0, 2.0*np.pi, 353)
+a2 = x_c2 + r2 * np.cos(theta2)
+b2 = y_c2 + r2 * np.sin(theta2)
+plt.plot(a2, b2)
+plt.savefig("./geometric_optics/rainbow/red-fit.pdf")
+
+fig = plt.figure('fit banda gialla')
+
+plt.errorbar(x3, y3, fmt='.', color="yellow")
+plt.xlabel(r"$x$")
+plt.ylabel(r"$y$")
+plt.xlim([100, 1150])
+plt.ylim([50, 1150])
+plt.grid()
+plt.gca().set_aspect("equal") #serve a forzare la griglia quadrata (rispetta le proporzioni tra assi)
+
+def fit_circle(x3, y3, sigma3):
+    n3 = len(x3)
+    x_m3 = np.mean(x3)
+    y_m3 = np.mean(y3)
+    u3 = x3 - x_m3
+    v3 = y3-y_m3
+
+    s_u3 = np.sum(u3)
+    s_uu3 = np.sum (u3**2.0)
+    s_uuu3 = np.sum(u3**3.0)
+    s_v3= np.sum(v3)
+    s_vv3 = np.sum(v3**2.0)
+    s_vvv3 = np.sum(v3**3.0)
+    s_uv3 = np.sum(u3 * v3)
+    s_uuv3 = np.sum(u3 * u3 * v3)
+    s_uvv3 = np. sum (u3* v3 * v3)
+    D3 = 2.0*(s_uu3 * s_vv3 - s_uv3**2.0)
+
+    u_c3 = (s_vv3 * (s_uuu3 + s_uvv3) - s_uv3*(s_vvv3 + s_uuv3))/ D3
+    v_c3 = (s_uu3 * (s_vvv3 + s_uuv3) - s_uv3*(s_uuu3 + s_uvv3)) / D3
+    x_c3 = u_c3 + x_m3
+    y_c3 = v_c3 + y_m3
+    r3 = np.sqrt(u_c3**2.0 + v_c3**2.0 + (s_uu3 + s_vv3) / n3)
+    sigma_xy3 = sigma3 * np.sqrt(2.0 / n3)
+    sigma_r3 = sigma3 * np.sqrt(1.0/n3)
+    return x_c3, y_c3, r3, sigma_xy3, sigma_r3
+
+np.random.seed (1)
+sigma3 = 0.05
+x_c3, y_c3, r3, sigma_xy3, sigma_r3 = fit_circle(x3, y3, sigma3)
+print (f'x_c3 = {x_c3:.3f} +/- {sigma_xy3:.3f}')
+print (f'y_c3 = {y_c3:.3f} +/- {sigma_xy3:.3f}')
+print (f'r3 = {r3: .3f} +/- {sigma_r3:.3f}')
+x3 = np.linspace(400, 900, 353)
+y3 = np.linspace(200, 600, 353)
+theta3 = np.linspace(0.0, 2.0*np.pi, 353)
+a3 = x_c3 + r3 * np.cos(theta3)
+b3 = y_c2 + r3 * np.sin(theta3)
+plt.plot(a3, b3)
+plt.savefig("./geometric_optics/rainbow/yellow-fit.pdf")
 plt.show()

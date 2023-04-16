@@ -13,6 +13,8 @@ file_path = "./coupled-swings/single-muted.txt"
 t, y = np.loadtxt(file_path, delimiter=None, usecols=(2,3), unpack=True)
 sigma_y = 1   # [u.a.]
 
+y = y[51:769]
+t=t[51:769]
 # Grafico principale.
 fig = plt.figure('Fit e residui')
 fig.add_axes((0.1, 0.3, 0.8, 0.6))
@@ -32,6 +34,6 @@ plt.grid(which='both', ls='dashed', color='gray')
 plt.xlabel('t [s]')
 plt.ylabel('Residuals')
 plt.ylim(-10.0, 10.0)
-#plt.savefig('fit_e_residui.png')
+plt.savefig('./coupled-swings/muted.pdf')
 
 plt.show()
