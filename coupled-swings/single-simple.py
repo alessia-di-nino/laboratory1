@@ -34,6 +34,7 @@ plt.grid(which='both', ls='dashed', color='gray')
 plt.xlabel('t [s]')
 plt.ylabel('Residuals')
 plt.ylim(-10.0, 10.0)
+plt.savefig("./coupled-swings/single-simple.pdf")
 
 # Calcolo del chi quadro.
 chi2 = (((y - oscillazione(t, A_hat, tao_hat, w_hat, phi_hat, C_hat)) / sigma_y)**2).sum()

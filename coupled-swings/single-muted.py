@@ -13,8 +13,8 @@ file_path = "./coupled-swings/single-muted.txt"
 t, y = np.loadtxt(file_path, delimiter=None, usecols=(2,3), unpack=True)
 sigma_y = 1   # [u.a.]
 
-y = y[51:769]
-t=t[51:769]
+y = y[110:769]
+t=t[110:769]
 # Grafico principale.
 fig = plt.figure('Fit e residui')
 fig.add_axes((0.1, 0.3, 0.8, 0.6))
@@ -29,11 +29,15 @@ plt.ylabel('x [cm]')
 # Grafico dei residui.
 fig.add_axes((0.1, 0.1, 0.8, 0.2))
 res = y - oscillazione(t, A_hat, tao_hat, w_hat, phi_hat, C_hat)
-plt.errorbar(t, res, sigma_y, fmt='.', color = "darkslateblue")
+plt.errorbar(t[1:768:4], res[1:768:4], sigma_y, fmt='.', color = "darkslateblue")
 plt.grid(which='both', ls='dashed', color='gray')
 plt.xlabel('t [s]')
 plt.ylabel('Residuals')
 plt.ylim(-10.0, 10.0)
-plt.savefig('./coupled-swings/muted.pdf')
+plt.savefig('./coupled-swings/single.muted.pdf')
+
+chi2 = (((y - oscillazione(t, A_hat, tao_hat, w_hat, phi_hat, C_hat)) / sigma_y)**2).sum()
+dof = len(t) - 5
+print(f'\nchi^2 del fit: {chi2} / {dof} dof')
 
 plt.show()

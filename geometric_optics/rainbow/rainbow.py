@@ -2,7 +2,9 @@ import numpy as np
 import matplotlib
 from matplotlib import pyplot as plt
 
-file_path = "./geometric_optics/rainbow/rainbow.png"
+#visualizzazione dell'immagine per prendere i dati (tramite la funzione image.imread() N.B.: le y sono rovesciate)
+#i passaggi fondamentali sono: percorso, plot, imread, etichette sugli assi, show, save
+file_path = "./geometric_optics/rainbow/rainbow.png" 
 plt.figure("Immagine originale")
 img = matplotlib.image.imread(file_path)
 plt.xlabel("x [pixels]")
@@ -10,10 +12,11 @@ plt.ylabel("y [pixels]")
 plt.imshow(img)
 plt.savefig("./geometric_optics/rainbow/immagine-originale.pdf")
 
+#plot dei punti raccolti tramite il frammento di codice soprastante
+#passi fondamentali: percorso, loadtxt, plot (nome ed errorbar), etichette sugli assi, limiti degli assi, griglia
 file_path = "./geometric_optics/rainbow/points_in.txt"
 x, y = np.loadtxt(file_path, delimiter=None, skiprows=0, usecols=(0,1), unpack=True)
 fig = plt.figure('fit circolare interno')
-
 plt.errorbar(x, y, fmt='.')
 plt.xlabel(r"$x$")
 plt.ylabel(r"$y$")
@@ -22,6 +25,8 @@ plt.ylim([150, 1100])
 plt.grid()
 plt.gca().set_aspect("equal") #serve a forzare la griglia quadrata (rispetta le proporzioni tra assi)
 
+#grafico di best fit tramite il metodo Kasa
+#primo passo: definizione della funzione con cui andremo a fittare i punti
 def fit_circle(x, y, sigma):
     n = len(x)
     x_m = np.mean(x)
@@ -29,6 +34,7 @@ def fit_circle(x, y, sigma):
     u = x - x_m
     v = y-y_m
 
+#secondo passo: calcolo di tutte le somme necessarie
     s_u = np.sum(u)
     s_uu = np.sum (u**2.0)
     s_uuu = np.sum(u**3.0)
@@ -40,18 +46,20 @@ def fit_circle(x, y, sigma):
     s_uvv = np. sum (u* v * v)
     D = 2.0*(s_uu * s_vv - s_uv**2.0)
 
+#terzo passo: calcolo dei valori di best fit
     u_c = (s_vv * (s_uuu + s_uvv) - s_uv*(s_vvv + s_uuv))/ D
     v_c = (s_uu * (s_vvv + s_uuv) - s_uv*(s_uuu + s_uvv)) / D
     x_c = u_c + x_m
     y_c = v_c + y_m
     r = np.sqrt(u_c**2.0 + v_c**2.0 + (s_uu + s_vv) / n)
+
+#quarto passo: calcolo degli errori (possibile solo quando i punti sono equispaziati)
     sigma_xy = sigma * np.sqrt(2.0 / n)
     sigma_r = sigma * np.sqrt(1.0/n)
     return x_c, y_c, r, sigma_xy, sigma_r
+sigma = 1
 
-np.random.seed (1)
-sigma = 0.05
-x, y = np.loadtxt(file_path, delimiter=None, skiprows=0, usecols=(0,1), unpack=True)
+#parametri di best fit in uscita, stampa e salvataggio
 x_c, y_c, r, sigma_xy, sigma_r = fit_circle(x, y, sigma)
 print (f'x_c = {x_c:.3f} +/- {sigma_xy:.3f}')
 print (f'y_c = {y_c:.3f} +/- {sigma_xy:.3f}')

@@ -60,7 +60,8 @@ figA.align_ylabels((ax1, ax2))
 #Chisquared A
 XA=np.sqrt(2*1536) 
 chisqA= np.sum((((yA - phases(xA, *poptA))/dyA)**2))
-print(f'Chi quadroA = {chisqA :.1f}')
+dof = len(xA) - 5
+print(f'\nchi^2 del fit: {chisqA} / {dof} dof')
 print('Chisq attesoA', 1536, '+/-', XA)
 
 
@@ -105,7 +106,8 @@ figB.align_ylabels((ax1, ax2))
 #Chisquared
 XB=np.sqrt(2*1536) 
 chisqB= np.sum((((yB - phases(xB, *poptB))/dyB)**2))
-print(f'Chi quadroB = {chisqB :.1f}')
+dof = len(xB) - 5
+print(f'\nchi^2 del fit: {chisqB} / {dof} dof')
 print('Chisq attesoB', 1536, '+/-', XB)
 
 plt.show()

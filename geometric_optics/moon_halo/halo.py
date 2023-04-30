@@ -64,4 +64,25 @@ b = y_c + r * np.sin(theta)
 plt.plot(a, b)
 plt.savefig("./geometric_optics/moon_halo/fit.pdf")
 
+if (x_c < x and y_c < y):
+    PHI=  np.arcsin(np.abs(y-y_c)/(np.sqrt((x_c - x)**2 + (y_c - y)**2)))
+
+elif x_c > x and y_c < y:
+    PHI=  np.pi/2 + np.arcsin(np.abs(y-y_c)/(np.sqrt((x_c - x)**2 + (y_c - y)**2)))
+
+elif x_c > x and y_c > y:
+    PHI=  np.pi + np.arcsin(np.abs(y-y_c)/(np.sqrt((x_c - x)**2 + (y_c - y)**2)))
+
+else: 
+    PHI=  3*np.pi/2 + np.arcsin(np.abs(y-y_c)/(np.sqrt((x_c - x)**2 + (y_c - y)**2)))
+
+fig2= plt.figure('Residui_alone_lunare')
+res= r - np.sqrt((x_c - x)**2 + (y_c - y)**2)
+plt.errorbar(PHI, res, sigma, fmt='.', color='tomato')
+plt.plot(PHI, np.full(PHI.shape, 0.0), color='chartreuse')
+plt.grid(color='lightgray', ls='dashed')
+plt.xlabel('Angolo campionamenti-orizzontale [$\circ$]')
+plt.ylabel('Residui [pixel]')
+plt.savefig("RES")
+
 plt.show()

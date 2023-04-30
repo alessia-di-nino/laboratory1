@@ -8,9 +8,9 @@ file_path = './four-wired_pendulum/data1.txt'
 t, T, Tr = np.loadtxt(file_path, unpack= True)
 
 #def geometria
-w = 0.022
-d = 1.22
-l = 1.123
+w = 0.02
+d = 1.147
+l = 1.097
 g = 9.81
 
 #calcolo angolo
@@ -23,7 +23,7 @@ def f_v(x, v0, tau):
     return v0*np.exp(-x/tau)
 
 def f_Theta(x, p1):
-    return 2*np.pi*np.sqrt(l/g)*(1+ p1*(x**2)) + 0.01
+    return 2*np.pi*np.sqrt(l/g)*(1+ p1*(x**2)) + 0.0371
 
 popt_v, pcov_v = curve_fit(f_v, t, v, np.array([500., 100.]))
 v0_fit, tau_fit = popt_v
@@ -45,6 +45,7 @@ fig = plt.figure('v in funzione del tempo')
 plt.ylabel('velocità [m/s]')
 plt.grid(color='gray')
 plt.plot(t, v, '+', t, f_v(t, v0_fit, tau_fit))
+
 #grafico dei residui1
 fig.add_axes((0.1247, 0.01, 0.7755, 0.12))
 res = v - f_v(t, v0_fit, tau_fit)
@@ -61,6 +62,7 @@ plt.xlabel('Angolo [rad]')
 plt.ylabel('Periodo [s]')
 plt.grid(color='gray')
 plt.plot(Theta, T, '+', Theta, f_Theta(Theta, 1./16), 'r' )
+
 #grafico dei residui2
 fig.add_axes((0.1247, 0.0000000000000001, 0.7755, 0.12))
 res = T - f_Theta(Theta, 1./16)
