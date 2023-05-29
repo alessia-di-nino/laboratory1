@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry} 
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage[skip=10pt plus1pt, indent=40pt]{parskip}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,
+    citecolor=black,
+    urlcolor=cyan
+    }
+
+\begin{document}
+
+\subsection{Introduzione}
+\subsubsection{Cenni teorici} %alessandra
+Una lente divergente è una lente che produce solo immagini virtuali, che per definizione costituiscono il punto, detto fuoco, in cui si incontrano i prolungamenti dei raggi riflessi dalla lente stessa. Dunque, è possibile raccogliere l'immagine creata da una lente divergente sfruttando come sorgente virtuale l'immagine creata da una lente convergente, come riportato in figura \ref{fig:1}.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=10cm]{5.png}
+    \caption{Schema delle grandezze in gioco nell'esperimento}
+    \label{fig:1}
+\end{figure}
+
+Infatti, la focale di una lente è proprio la distanza tra il fuoco e la lente stessa. La legge delle lenti sottili esprime il legame tra la focale di una lente e i parametri p e q che sono, rispettivamente, la distanza della sorgente dalla lente e la distanza della lente dallo schermo che raccoglie le immagini:
+
+\begin{equation}
+    \frac{1}{p} + \frac{1}{q} = \frac{1}{f}
+\end{equation}
+
+\vspace{1em}
+
+\subsubsection{Scopo dell'esperienza} %alessia
+L'obiettivo dell'esperienza consiste nella misura della lunghezza focale di una lente divergente.
+
+\vspace{2em}
+
+\subsection{Metodi}
+\subsubsection{Apparato sperimentale} %alessandra
+Gli strumenti utilizzati sono:
+\begin{itemize}
+    \item banco ottico con sorgente luminosa;
+    \item lamina sottile con inciso un piccolo triangolo (la cui proiezione sullo schermo permetteva di calibrare la distanza fra le due lenti);
+    \item lente convergente (di potere diottrico +12);
+    \item schermo in cartone (al fine di raccogliere l'immagine creata dalla lente convergente);
+    \item lente divergente (di potere diottrico -5);
+    \item supporto metallico per lo scorrimento degli strumenti utilizzati.
+\end{itemize}
+
+\vspace{1em}
+
+
+
+\begin{figure} [H]
+\begin{minipage}[b]{8.5cm}
+\centering
+\includegraphics[width=8cm]{Image.jpeg}
+\caption{Prospettiva che permette di osservare il sistema nelle sue parti principali: lente convergente, lente divergente, dispositivo in cartone. }
+\end{minipage}
+\ \hspace{2mm} \hspace{3mm} \
+\begin{minipage}[b]{5.5cm}
+\centering
+\includegraphics[width=8cm]{Image (3).jpeg}
+\caption{Banco ottico il cui fascio di luce attraversa il triangolo inciso sulla lamina}
+\end{minipage}
+\end{figure}
+\FloatBarrier
+
+
+
+
+
+\subsubsection{Descrizione delle misure} %alessia
+Dato che la lente divergente non forma immagini reali, per questa misura occorre una lente convergente di potere diottrico maggiore in modulo rispetto a
+quello della lente divergente; possiamo poi considerare l’immagine prodotta dalla lente
+convergente come una sorgente virtuale per la lente divergente.
+Per condurre le misure, quindi, abbiamo utilizzato la fenditura a forma di triangolo mettendola sulla sorgente luminosa in modo che si creasse un'immagine distinguibile da mettere bene a fuoco su uno schermo. Abbiamo dunque posto la lente convergente sul banco ottico, messo a fuoco l’immagine sullo schermo e segnatone il punto (che da qui in poi chiameremo c). Abbiamo poi posizionato lo schermo all'estremità del supporto e posto la lente divergente tra la convergente e lo schermo stesso, spostandola fino al punto in cui l'immagine risultasse nuovamente a fuoco per misurare la distanza p (presa con segno negativo, corrispondente alla distanza tra la lente divergente e c) e q (presa con segno positivo, corrispondente alla distanza tra la lente divergente e lo schermo stesso). Per misurare tali distanze, considerando che il supporto mobile di ogni strumento aveva una base di circa 5 cm, abbiamo segnato sulla base tale distanza e preso la metà come valore centrale, associando a p un'incertezza pari a 0.5cm (determinata dal fatto che la lente divergente non è perfettamente sottile e dunque il centro della lente è leggermente spostato rispetto al punto che ci aspetteremmo) e a q un'incertezza di 2cm (determinata dal fatto che la messa a fuoco dell'immagine era distinguibile, appunto, in un dato intervallo di spostamento e non solo in uno specifico punto). Abbiamo reiterato il processo avvicinando sempre di più lo schermo a c, prendendo così 10 misure:
+
+\begin{center}
+\begin{tabular}{c|c}
+    \toprule
+    -p $(\pm 0.5)$ [cm] & q $(\pm 2.0)$ [cm] \\
+    \midrule
+     15.5 & 60.0 \\
+     \midrule
+     15.0 & 58.0 \\
+     \midrule
+     14.5 & 52.0 \\
+     \midrule
+     14.0 & 44.0 \\
+     \midrule
+     13.7 & 40.0 \\
+     \midrule
+     12.8 & 34.0\\
+     \midrule
+     11.5 & 26.0 \\
+     \midrule
+     10.0 & 18.0 \\
+     \midrule
+     8.5 & 16.0 \\
+     \midrule
+     6.8 & 10.0 \\
+     \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+
+\subsubsection{Analisi dei dati} %alessandra
+Una volta raccolti i dati, abbiamo utilizzato la funzione curve\_fit() di Python per poter realizzare un grafico di best - fit. Per la precisione, abbiamo realizzato un fit lineare da cui ci aspettavamo che il coefficiente angolare fosse compatibile con 1 e che l'intercetta fosse proprio l'espressione della nostra focale (poichè, dalla legge delle lenti sottili, risulta che $\frac{1}{p}$ e $\frac{1}{q}$ sono uguali a meno di una costante).
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=14cm]{IMG_0452.png}
+    \caption{Grafico di best fit e relativo grafico dei residui }
+    \label{fig:my_label}
+\end{figure}
+\FloatBarrier
+
+Dall'analisi risultano i seguenti parametri di best - fit:
+
+\begin{center}
+    \begin{tabular}{c|c}
+    \toprule
+     $\hat{m}$ & $1.01 \pm 0.04$  \\
+     \midrule
+     $\hat{p}$ & $4.9 \pm 0.3$ \\
+     \bottomrule
+ \end{tabular}   
+\end{center}
+
+\vspace{2em}
+
+\subsection{Conclusioni} %alessia
+In generale, è possibile concludere che il fit realizzato è un buon fit, in quanto:\\
+
+\begin{itemize}
+    \item nel grafico dei residui, i dati oscillano attorno allo zero con fluttuazioni paragonabili a una barra d'errore;
+    \item il coefficiente angolare $m$ della retta di fit è compatibile con 1;
+    \item la focale della lente è compatibile con il potere diottrico della lente divergente utilizzata (-5)
+\end{itemize}
+
+Quanto al $\chi^2$, non è stato eseguito il test poichè le variabili che andrebbero sommate per farlo non sono gaussiane.
+%inserisci il valore del chi quadro
+\end{document}

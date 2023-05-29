@@ -1,0 +1,170 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry} 
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage[skip=10pt plus1pt, indent=40pt]{parskip}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,
+    citecolor=black,
+    urlcolor=cyan
+    }
+
+
+\begin{document}
+\title{Studio del moto di un pendolo quadrifilare}
+\author{Alessia Di Nino, Alessandra Natì (corso B, gruppo B 1-2)}
+\date{23 Marzo 2023}
+\maketitle
+
+
+\section{Introduzione}
+\subsection{Cenni teorici}
+Un pendolo quadrifilare è un corpo rigido a forma di parallelepipedo collegato con quattro fili sottili, inestensibili e di massa trascurabile a due punti.
+Il periodo del pendolo si può sviluppare in serie come:
+
+\begin{equation}
+    T = 2\pi \sqrt{\frac{l}{g}} (1 + \frac{1}{16}\theta_0^2 + \frac{11}{3072}\theta_0^4 + ...)
+\end{equation}
+
+Per quanto riguarda la misura dell'ampiezza dell'oscillazione (quasi) istantanea, essa si può ricavare da un bilancio energetico fatto considerando che, nel momento in cui il pendolo si trova all'altezza massima raggiunta dall'i-esima oscillazione, la sua energia meccanica sarà soltanto potenziale, mentre nel punto più basso della traiettoria l'energia risulta tutta cinetica (scegliendo opportunamente lo 0 dell'energia potenziale). Dunque, imponendone la conservazione (assumendo trascurabile la perdita di energia per attrito su un quarto di periodo) otteniamo:
+
+\begin{equation*}
+    mgl(1 - cos\theta_0)=\frac{1}{2}mv_0^2
+\end{equation*}
+
+da cui
+
+\begin{equation}
+    \theta_0 = arccos(1-\frac{v_0^2}{2gl})
+    \label{theta}
+\end{equation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{3.jpg}
+    \caption{Schematizzazione delle grandezze in gioco}
+    \label{fig:my_label}
+\end{figure}
+La velocità del pendolo, quando viene lasciato da un certo angolo, risulta smorzata con andamento esponenziale secondo la legge:
+
+\begin{equation}
+    v_o(t) = v_0(0)e^{-\lambda t}
+    \label{v}
+\end{equation}
+
+dove il tempo di smorzamento risulta essere $\tau = \frac{1}{\lambda}$ e $\lambda$, appunto, la costante di smorzamento.\\
+
+\vspace{1em}
+
+\subsection{Scopo dell'esperienza}
+Lo scopo dell'esperienza è lo studio del moto di un pendolo (tramite misure di velocità e tempo di smorzamento) e la dipendenza del periodo dall'ampiezza di oscillazione. In particolare si
+è studiato l’andamento della velocità massima e del periodo in funzione del tempo e si è cercato di capire quali
+termini anarmonici del periodo si potessero apprezzare.
+
+
+\vspace{2em}
+
+\section{Metodi}
+\subsection{Apparato sperimentale}
+Per l'esperimento ci siamo servite di:
+\begin{itemize}
+    \item un pendolo quadrifilare;
+    \item un metro a nastro di risoluzione 1mm;
+    \item un computer per acquisizione e analisi dati;
+    \item un sistema elettrico con traguardo ottico davanti al quale far passare il pendolo nel corso del proprio moto;
+    \item un calibro ventesimale di risoluzione 0.05mm.
+\end{itemize}
+
+\begin{figure} [H]
+\begin{minipage}[b]{8.5cm}
+\centering
+\includegraphics[width=5cm]{1.jpg}
+\caption{Sistema elettronico con traguardo ottico}
+\end{minipage}
+\ \hspace{2mm} \hspace{3mm} \
+\begin{minipage}[b]{8.5cm}
+\centering
+\includegraphics[width=5cm]{2.jpg}
+\caption{Pendolo quadrifilare\\}
+\end{minipage}
+\end{figure}
+
+\FloatBarrier
+
+\vspace{1em}
+
+\subsection{Descrizione delle misure}
+Abbiamo anzitutto calcolato il centro di massa del pendolo per calcolare l (che rappresenta, appunto, la distanza del punto di sospensione dal centro di massa). Per farlo, abbiamo preso le misure delle dimensioni di tutte le parti costituenti il pendolo per calcolarne il volume, e poi abbiamo cercato i valori delle densità tabulate su internet per trovarne la massa:
+
+\begin{equation*}
+    m = \rho V
+\end{equation*}
+
+dopodiché abbiamo trovato il centro di massa tramite la formula:
+
+\begin{equation*}
+    \sum_{i = 1}^{n}\frac{m_i x_i}{m_{tot}}
+\end{equation*}
+ dove i vari $x_i$ rappresentano le distanze di ogni componente dal punto di sospensione; il sistema, infatti, è costituito da un blocco di legno, una bandierina di alluminio e un blocco inferiore di piombo. Abbiamo ottenuto che la misura di l è compatibile con la misura della distanza dal punto di sospensione al centro del blocco di legno, per cui $(l = 1.097 \pm 0.001)m$ e $(d = 1.147 \pm 0.001)m$, con d che è la distanza dal punto di sospensione alla bandierina. Preliminarmente, abbiamo anche misurato lo spessore della bandierina: $(w = 0.020 \pm 0.001)m$.
+ 
+Abbiamo poi utilizzato il programma di acquisizione pendulum, che
+registra il tempo di ogni transizione del traguardo ottico e fornisce un file di uscita contenente tre colonne che rappresentano:
+\begin{itemize}
+    \item il tempo dall'inizio della presa dati;
+    \item il periodo T dell'oscillazione corrente;
+    \item il tempo di transito $t_T$ della bandierina.
+\end{itemize}
+
+Sfruttando i dati ottenuti per $t_T$ e la formula \eqref{v} abbiamo ottenuto il seguente valore per la velocità del centro di massa del pendolo nel punto più basso dell'oscillazione: $v_0 = 1.7285 \pm 0.0006 m/s$.\\
+\\
+Di seguito, tramite la formula \eqref{theta}, abbiamo ottenuto il seguente valore per $\theta_0 = 0.53 \pm 0.01 rad$.
+
+\vspace{1em}
+
+\subsection{Analisi dei dati}
+Di seguito, le misure sono state analizzate tramite la funzione curve\_fit() di Python, realizzando il grafico di best fit e il grafico dei residui. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{velo.pdf}
+    \caption{Decadimento esponenziale della velocità rispetto al tempo}
+    \label{fig:my_label}
+\end{figure}
+
+Il fit restituisce il seguente valore per il tempo di smorzamento: $\tau = (399.6 \pm 0.7)s$.\\
+Di seguito:
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=8cm]{periodo.pdf}
+    \caption[width=15cm]{Periodo in funzione dell'angolo}
+    \label{fig:my_label}
+\end{figure} 
+
+\section{Conclusioni}
+Osservando il grafico della velocità in funzione del tempo vediamo che questa
+segue un andamento esponenziale decrescente, proprio come descritto dalla teoria, perciò il modello teorico descrive in maniera accurata i dati raccolti.\\
+Affinchè un termine della serie sia trascurabile è necessario che sia molto più piccolo dell'incertezza di misura del periodo stesso, deve cioè avverarsi che:
+
+\begin{equation}
+    \frac{T_0 \theta_0 ^2}{16} << \sigma_T
+\end{equation}
+
+da cui
+
+\begin{equation}
+    \theta_0 << 4\sqrt{\frac{\sigma_T}{T_0}}
+\end{equation}
+
+Verificando che fermandoci al secondo ordine otteniamo un $\theta_0$ dello stesso ordine di grandezza di $4\sqrt{\frac{\sigma_T}{T_0}}$, possiamo concludere che il periodo sia apprezzabile fino al secondo ordine.
+\end{document}
