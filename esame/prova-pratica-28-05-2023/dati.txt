@@ -1,0 +1,21 @@
+CILINDRO LUNGO STRETTO 
+altezza: 95.40 +/- 0.02 mm-> calibro cinquantesimale, 95.35
+diametro: 6.09 +/- 0.01 mm -> calibro palmer
+
+
+CILINDRO CORTO LARGO
+altezza: 37.50 +/- 0.02 mm-> calibro cinquantesimale
+diametro: 10.20 +/- 0.01 mm -> calibro palmer
+
+CILINDRO CORTO STRETTO
+altezza: 36.60 +/- 0.02 mm -> calibro cinquantesimale
+diametro: 6.46 +/- 0.01 mm -> calibro palmer
+
+CILINDRO CORTISSIMO LARGO
+altezza: 16.00 +/- 0.02 mm -> calibro cinquantesimale
+diametro: 10.46 +/- 0.01 mm -> calibro palmer
+
+PRISMA
+altezza: 17.62 +/- 0.02 mm -> calibro cinquantesimale
+base: 15.45 +/- 0.01 mm -> calibro palmer (15.0 cinquantesimale)
+

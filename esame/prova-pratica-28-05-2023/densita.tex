@@ -23,15 +23,14 @@
 
 \begin{document}
 
-\title{Densità: misurazioni su solidi in acciaio, ottone e alluminio}
-\author{Alessia Di Nino, Alessandra Natì (corso B, gruppo B 1-2-2)}
-\date{24 Novembre 2022}
+\title{Densità: misurazioni su solidi in ottone}
+\author{Alessia Di Nino}
+\date{30 Maggio 2023}
 \maketitle
 
 \section{Introduzione}
 \subsection{Scopo dell'esperienza} %1 - alessia
-L’obiettivo dell’esperienza è quello di distinguere i materiali dei solidi a disposizione in laboratorio (acciaio, ottone e alluminio) misurandone le diverse densità.  
-
+L'obiettivo dell'esperienza è quello di misurare la densità dell'ottone tramite la misurazione di masse e volumi di oggetti a disposizione. 
 \subsection{Cenni teorici} %2 - alessandra
 Attraverso la misura del volume e della massa degli oggetti (di diverse forme) è possibile stimarne la densità. 
 
@@ -54,28 +53,12 @@ Dati gli oggetti a disposizione (cfr. par. \ref{subsec: metodi}) è importante t
      \toprule
      Solido & Volume & Dimensioni\\
      \midrule
-     Sfera & $\frac{4}{3}\pi r^3$ & r = raggio della sfera\\
      Parallelepipedo & abc & a = altezza, b = lunghezza, c = profondità\\
      Cilindro & $\pi r^2h$ & r = raggio di base, h = altezza\\
      Prisma a base esagonale & $3b^2htan(\pi/3)$ & b = doppio dell'apotema, h = altezza\\
      \bottomrule
 \end{tabular}
 
-Nel particolare caso delle sfere, si può costruire anche un grafico in scala bilogaritmica del raggio r in funzione della massa m, poichè la legge che lega queste due grandezze è del tipo legge di potenza:
-
-\begin{equation}
-\label{eq:1}
-    m = \frac{4}{3}\pi r^3 \rho = kr^3
-\end{equation}
-
-dunque
-
-\begin{equation}
-\label{eq:2}
-    k = \frac{4}{3} \pi \rho
-\end{equation}
-
-%Il confronto delle misure ottenute utilizzando la legge di potenza con quelle ottenute precedentemente dovrebbe confermare il risultato.
 
 \FloatBarrier
  
@@ -84,32 +67,26 @@ dunque
 \subsection{Apparato sperimentale} %3 - alessia
 \label{subsec: metodi}
 \begin{enumerate}
-    \item Strumenti utilizzati:
+    \item Strumenti e materiale a disposizione:
     \begin{itemize}
         \item calibro ventesimale di risoluzione $0.05 mm$;
         \item calibro cinquantesimale di risoluzione $0.02 mm$;
         \item calibro palmer di risoluzione $0.01mm$;
-        \item bilancia di risoluzione $0.001g$.
-    \end{itemize}
+        \item bilancia di risoluzione $0.001g$;
+        \item solidi di ottone (nello specifico, un prisma a base esagonale, un parallelepipedo e quattro diversi cilindri);
 
-    \item Materiale a disposizione:
-    \begin{itemize}
-        \item solidi di acciaio (nello specifico, cinque sfere di diverso raggio);
-        \item solidi di ottone (nello specifico, un prisma a base esagonale, un parallelepipedo e due diversi cilindri);
-        \item solidi di alluminio (nello specifico, un parallelepipedo e due diversi cilindri).
     \end{itemize}
-\end{enumerate}
 
 \begin{figure} [h]
     \centering
-    \includegraphics[width = 10cm]{sfere.jpg}
+    \includegraphics[width = 10cm]{calibro venti.jpg.jpg}
     \caption{Calibro ventesimale}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width = 10cm]{ottone.jpg}
+    \includegraphics[width = 10cm]{calibro cinqua.jpg.jpg}
     \caption{Calibro cinquantesimale}
     \label{fig:my_label}
 \end{figure}
@@ -131,106 +108,74 @@ dunque
 \FloatBarrier
 
 \subsection{Descrizione delle misure} %4 - alessandra
-Abbiamo utilizzato il calibro ventesimale per misurare il diametro (d = 2r) delle sfere, il calibro cinquantesimale per misurare le dimensioni dei solidi in ottone e infine il palmer per misurare le dimensioni dei solidi in alluminio. Abbiamo evitato di misurare i diametri delle sfere con il palmer in quanto al posizionamento della sfera non eravamo sicure di misurare una corda piuttosto che il diametro (cosa che invece ci risultava più visibile tramite la misurazione effettuata con calibro). A quel punto, abbiamo scelto di utilizzare il palmer per i solidi in alluminio che erano tutti più piccoli di quelli in ottone (e quindi consentivano di far fare meno giri al nonio del palmer, che impiega più tempo a compierli in quanto decimetrico, dunque più preciso). La scelta del calibro ventesimale (e quindi dello strumento meno preciso fra tutti) per le sfere è stata dettata dalla necessità di leggere velocemente il diametro degli oggetti, poichè scivolavano facilmente dallo strumento.
-Gli errori associati alle misure delle lunghezze e delle masse sono pari alle risoluzioni degli strumenti utilizzati. Di seguito, la tabella con i dati raccolti divisi per materiale:
-
+Ho utilizzato il calibro cinquantesimale per le misure di altezze e basi (prisma e parallelepipedo), mentre ho usato il calibro palmer per le misure di diametro dei cilindri in quanto, avendo una superficie di contatto maggiore, ero più sicura nel prendere l'effettivo diametro del cilindro e non una sua corda. Prima di prende le misure con il palmer, mi sono assicurata che chiudendo totalmente il tamburo, lo zero della ghiera corrispondesse con l'asse graduato sul cilindro, per comprendere se ci fosse la necessità di correggere un errore di zero; tuttavia non è stato necessario poichè, appunto, lo strumento risultava ben calibrato.\\
+Ho considerato come incertezza sulle misure l'incertezza dello strumento con cui ho effettuato la misura divisa per la radice di 12, poiché si tratta di strumenti digitali e quindi l'incertezza è uniforme su tutto il range di misura.\\
 \vspace{1em}
 
 
-ACCIAIO \quad \quad
 \begin{tabular}{lcl}
     \toprule
-    Solido & Dimensioni (\pm 0.05) [mm] & Massa (\pm 0.001) [g]\\
+    Solido & Spessore (\pm 0.006) [mm] & Altezza (\pm 0.003) [mm] & Massa (\pm 0.0003) [g]\\
     \midrule
-    Sfera 1 & d = 12.8 & 8.360\\
-    Sfera 2 & d = 14.35 & 11.893\\
-    Sfera 3 & d = 16.70 & 18.904\\
-    Sfera 4 & d = 18.30 & 24.861\\
-    Sfera 5 & d = 22.25 & 44.885\\
+    Cilindro 1 & 6.46 & 95.38 & 22.388\\
+    Cilindro 2 & 10.82 & 37.50 & 24.605\\
+    Cilindro 3 & 5.96 & 36.70 & 8.572\\
+    Cilindro 4 & 10.46 & 16.00 & 10.468\\
+    Prisma a base esagonale & 15.45 & 17.62 & 28.598\\
+    Parallelepipedo &
     \bottomrule
 \end{tabular}
+(le misure delle dimensioni del parallelepipedo serviranno alla fine dell'esperimento per confrontare il valore del volume ottenuto con i dati noti e quello ottenuto a partire dalla stima della densità dell'ottone).\\
+Tutte le misure sono state divise per 1000 per ottenere i valori delle lunghezze in metri e quello delle masse in Kg, così da avere la densità in $Kg/m^3$.\\
 
-\vspace{1em}
-
-
-ALLUMINIO \quad
-\begin{tabular}{lcl}
-     \toprule
-     Solido & Dimensioni (\pm 0.01) [mm] & Massa  \\
-     \midrule
-     Cilindro 1 & d = 11.96, h = 19.14 & 5.819\\
-     Cilindro 2 & d = 5.95, h = 19.42 & 1.457\\
-     Parallelepipedo & a = 17.65, b = 10.06, c = 10.00& 4.773 \\
-     \bottomrule
-\end{tabular}
-
-\vspace{1em}
-
-
-OTTONE \quad \quad
-\begin{tabular}{lcl}
-     \toprule
-     Solido & Dimensioni (\pm 0.02)[mm] & Massa (\pm 0.001)[g]\\
-     \midrule
-    Cilindro 1 & d = 10.12, h = 37.58 & 24.613\\
-    Cilindro 2 & d = 10.08, h = 16.08 & 10.505\\
-    Prisma a base esagonale & b = 9.74, h = 22.20 & 16.422\\
-    Parallelepipedo & a = 41.48, b = 9.90, c = 9.90 & 32.738\\
-     \bottomrule
-\end{tabular}
+Nell'ordine, dunque, ho misurato le masse dei sei corpi di ottone, mettendo da parte quello di massa maggiore (che ho utilizzato poi per la verifica finale); di seguito ho misurato il volume e le rispettive incertezze dei volumi dei solidi, utilizzando le formule riportate nel paragrafo precedente. A questo punto, ho realizzato un fit lineare masse - volumi per stimare la densità del materiale e con quest'ultima ho misurato il volume del corpo di massa maggiore. Alla fine, ho misurato indipendentemente il volume del corpo di massa maggiore con le mie misure prese di dimensioni e massa e ho confrontato i due valori ottenuti.\\
+%Di seguito, i volumi ottenuti con le rispettive incertezze:
 
 \vspace{2em}
 
 \subsection{Analisi dei dati - metodo di fit e grafico dei residui condotto utilizzando la funzione curve\_fit() di Python}
+
 \label{subsec: curve-fit}
-I dati raccolti sono stati analizzati tramite la funzione curve\_fit() di Python, realizzando, per l'appunto, il grafico di best fit e il grafico dei residui. Abbiamo raccolto le misure per materiale, realizzando un programma diverso per i solidi in acciaio, quelli in alluminio e, infine, quelli in ottone. Nello specifico caso delle sfere, abbiamo anche utilizzato la legge di potenza che lega la massa del solido al raggio dello stesso, ottenendo quindi due fit diversi (uno Massa-Volume, l'altro Raggio-Massa). Nella realizzazione del fit, abbiamo scelto di porre sull'asse x le misure di massa e sull'asse y quelle di volume per rispettare la condizione necessaria di fit ($\sigma_y >> |\frac{df}{dx}|\sigma_x$).  Di seguito, i valori di fit e i  grafici ottenuti:
+Ho utilizzato i dati raccolti per eseguire un fit tramite la funzione curve\_fit() di Python; in particolare, però, notiamo che se poniamo i volumi sulle x e le masse sulle y, gli errori sulla x non sono trascurabili per cui viene meno una delle ipotesi del fit dei minimi quadrati, cioè:
+\begin{equation}
+    \sigma_{y_i} >> \sigma_{x_i}(\frac{df}{dx})
+\end{equation}
+dove $f(x) = mx + q$ è la funzione che vogliamo fittare.\\
+Per ovviare a questo problema, dunque, ho invertito le variabili, ponendo le masse sulle x e i volumi sulle y, in modo da poter trascurare gli errori sulle x.\\
+Ho ottenuto i seguenti parametri di fit, dove m è proprio la stima della densità:
 
 \begin{tabular}{l|c|l|c}
      \toprule
-     Parametro di fit & Acciaio & Alluminio & Ottone \\
+     Parametro di fit & valore\\
     \midrule
-    $\^{m} [m^3/Kg] & 1.279 \cdot 10^{-4} \pm 1.000 \cdot 10^{-7} & 3.718 \cdot 10^{-4} \pm 8.000 \cdot 10^{-7} & 1.248 \cdot 10^{-4} \pm 9 \cdot 10^{-7}$\\
-     $\^{q} [m^3]$ & 2.6 \cdot 10^{-8} \pm 3.0 \cdot 10^{-9} & -1.0 \cdot 10^{-9} \pm 4 \cdot 10^{-9} & -3.2 \cdot 10^{-8} \pm 2 \cdot 10^{-9}\\
-     \midrule
-     $\^{n} [m^3/Kg] & 36704.62 \pm 1085.67$\\
-     $\^{i}$ & 3.026 \pm 0.006$\\
-     \bottomrule
+    $\^{m} \pm \sigma_m [m^3/Kg]$ & 1.49e-04 \pm 2e-06\\
+    $\^{q} \pm \sigma_q [m^3]$ & -2.2e-07 \pm 3e-08\\
+    \bottomrule
 \end{tabular}
 %non usare le potenze di 10 ma usare l'espressione "e-04"; errori con 1 o massimo 2 cifre significative
-dove \^{n} e \^{i} sono i valori centrali di norm ed index della legge di potenza per le sfere.
 
 \begin{figure}
     \centering
-    \includegraphics[width=10cm]{1.pdf}
-    \caption{Fit Massa-Volume delle misure effettuate sulle sfere in acciaio}
+    \includegraphics[width=10cm]{fit.pdf}
+    \caption{Fit Massa-Volume}
     \label{fig:my_label}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=10cm]{2.pdf}
-    \caption{Fit Raggio-Massa delle misure effettuate sulle sfere in acciaio}
+    \includegraphics[width=10cm]{residui.pdf}
+    \caption{Grafico dei residui}
     \label{fig:my_label}
 \end{figure}
 
-\FloatBarrier
+Di seguito, i dati del volume del corpo di massa maggiore ottenuti con le due misurazioni diverse:
 
-Dal fit effettuato sulle misure dei solidi in alluminio e ottone si ottengono i seguenti grafici:
-\begin{figure} [h]
-    \centering
-    \includegraphics[width=10cm]{5.pdf}
-    \caption{Fit Massa-Volume delle misure effettuate sui solidi in alluminio}
-    \label{fig:my_label}
-\end{figure}
-
-\FloatBarrier
-
-\begin{figure} [h]
-    \centering
-    \includegraphics[width=10cm]{7.pdf}
-    \caption{Fit Massa-Volume delle misure effettuate sui solidi in ottone}
-    \label{fig:my_label}
-\end{figure}
+\begin{tabular}
+    \toprule
+    Volume & valore [m^3]\\
+    \midrule
+    Volume con densità stimata & 1.49e-04\\
+\end{tabular}
 
 \FloatBarrier
 
