@@ -148,8 +148,8 @@ Ho ottenuto i seguenti parametri di fit, dove m è proprio la stima della densit
      \toprule
      Parametro di fit & valore\\
     \midrule
-    $\^{m} \pm \sigma_m [m^3/Kg]$ & 1.49e-04 \pm 2e-06\\
-    $\^{q} \pm \sigma_q [m^3]$ & -2.2e-07 \pm 3e-08\\
+    $\frac{1}{\^{m}} \pm \sigma_m [m^3/Kg]$ & 1.49e-04 \pm 2e-06\\
+    $\frac{1}{\^{q}} \pm \sigma_q [m^3]$ & -2.2e-07 \pm 3e-08\\
     \bottomrule
 \end{tabular}
 %non usare le potenze di 10 ma usare l'espressione "e-04"; errori con 1 o massimo 2 cifre significative
@@ -174,7 +174,8 @@ Di seguito, i dati del volume del corpo di massa maggiore ottenuti con le due mi
     \toprule
     Volume & valore [m^3]\\
     \midrule
-    Volume con densità stimata & 1.49e-04\\
+    Volume con densità stimata & $5.21e-08 \pm 6e-08$\\
+    Volume con misure dirette & $4.178e-08 \pm 2e-09$\\
 \end{tabular}
 
 \FloatBarrier
@@ -182,31 +183,8 @@ Di seguito, i dati del volume del corpo di massa maggiore ottenuti con le due mi
 \vspace{1em}
 
 \section{Conclusioni} 
-Possiamo infine affermare che i modelli di fit sono corretti grazie ad una serie di commenti. Come osservazione preliminare, notiamo che i grafici dei residui mostrano che i valori oscillano attorno allo zero con fluttuazioni paragonabili alle barre d'errore considerate. Di seguito, i grafici dei residui per ciascun materiale:
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = 10 cm]{3.pdf}
-    \caption{Grafico dei residui per i solidi in acciaio}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width = 10cm] {4.pdf}
-    \caption{Grafico dei residui per i solidi in alluminio}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure} [H]
-    \centering
-    \includegraphics[width = 10 cm]{6.pdf}
-    \caption {Grafico dei residui per i solidi in ottone}
-    \label{fig:my_label}
-\end{figure}
-
-\vspace{1em}
+Dunque è possibile fare una serie di commenti. Innanzitutto, trovando il valore di $\frac{1}{\hat{m}}$ è possibile confrontare il valore di densità ottenuta con quella tabulata di 8400 $Kg/m^3$.\\
+Si ottiene pertanto un valore di densità di $6711 \pm 71 Kg/m^3$, che purtroppo non è compatibile con quello trovato. \\
 
 In secondo luogo, possiamo osservare dai grafici e dai valori di \^{q} che le rette di fit hanno un'intercetta compatibile con l'origine. Per farlo, bisogna trovare $\frac{1}{\^{q}}$, poichè i valori di $\^{q}$ sono stati misurati avendo m sull'asse x e V sull'asse y (mentre l'espressione della densità è $m=\rho V$, cioè m e V sono disposti al contrario per le ragioni esposte al par. \ref{subsec: curve-fit}).\\
 Inoltre, possiamo confrontare i valori di densità trovati con alcuni valori tabulati. Per le medesime ragioni sopra esposte, si calcola $\frac{1}{\^{m}}$. \\
